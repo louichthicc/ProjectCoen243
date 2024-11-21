@@ -1,5 +1,7 @@
-//
-// Created by LouPe on 2024-11-21.
+// Patient.h
+// Created by:
+// Louis-Charles Penelle (40315955), Github : Louichthicc
+// Maya Senoune (40314506), Github : Maya-senoune
 //
 
 #ifndef PATIENT_H
