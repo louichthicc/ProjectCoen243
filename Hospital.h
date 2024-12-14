@@ -6,31 +6,32 @@
 
 #ifndef HOSPITAL_H
 #define HOSPITAL_H
-#include <string>
+#include "Patients.h"
+#include "Doctor.h"
 #include <vector>
+
+
 class Hospital {
-  private:
-std::vector<Patient>* patients;
-std::vector<Doctor>* doctors;
-
 public:
-  Hospital(std::vector<Patient>* P, std::vector<Doctor*> D); // constructor (has to read)
+    //constructor
+    Hospital();
+    //help with the construction
+    void createPatients();
+    void createDoctors();
 
-  //Members function
- void Find_Oldest_Patient();
+    //others
+    void Find_Oldest_Patient();
+    int Count_Critical_Patients();
+    void Doctor_By_Speciality(std::string s);
+    void Show_Patient_by_ID(int id);
+    void Show_Doctor_by_ID(int id);
+    void Show_assigned_doctor(int id);
+    void Show_Assigned_Patients(int id);
 
- int Count_Critical_Patients();
-
- void Doctor_By_Speciality();
-
- void Show_Patients_ID();
-
- void Show_Doctor_by_ID();
-
- void Show_assigned_Doctors();
-
- void Show_Assigned_Patients();
-
+private:
+    std::vector<Patients> patients;
+    std::vector<Doctor> doctors;
+};
 
 
 

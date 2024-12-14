@@ -16,7 +16,7 @@ public:
 //getters and setters
     std::string getFirstName();
     std::string getLastName();
-    int getID();
+    long int getID();
     std::string getSpeciality();
     int getYearsOfExperience();
     double getSalary();
@@ -24,7 +24,7 @@ public:
 
     void setFirstName(std::string name);
     void setLastName(std::string lastName);
-    void setID(int ID);
+    void setID(long int ID);
     void setSpeciality(std::string speciality);
     void setYearsOfExperience(int years);
     void setSalary(double salary);
@@ -36,11 +36,12 @@ public:
 private:
     std::string doctorFirstName;
     std::string doctorLastName;
-    int doctorID;
+    long int doctorID;
     std::string speciality;
     int yearsOfExperience;
     double baseSalary;
     double bonus;
+    double salary;
 };
 
 

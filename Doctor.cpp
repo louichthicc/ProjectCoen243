@@ -2,139 +2,82 @@
 #include "Doctor.h"
 #include <string>
 #include <iostream>
+#include <utility>
 
-//constr
+//constructor
 Doctor::Doctor() {}
-Doctor::Doctor(std::string firstName,std::string lastName,int DID, std::string speciality, int NOY, double salary, double bsal) {
-DoctorfirstName=firstName;
-
-DoctorlastName=lastName;
-
-doctorID=DID;
-
-doctorSpeciality=speciality;
-
-numberOfYears=NOY;
-
-doctorSalary=salary;
-
-bonusSalary=bsal;
+Doctor::Doctor(std::string firstName,std::string lastName,int DID, std::string s, int NOY, double S, double bsal) {
+    doctorFirstName=std::move(firstName);
+    doctorLastName=std::move(lastName);
+    doctorID=DID;
+    speciality=std::move(s);
+    yearsOfExperience=NOY;
+    baseSalary=S;
+    bonus=bsal;
+    salary= Calculate_Salary();
   }
 
 
 std::string Doctor::getFirstName() {
-  return DoctorfirstName; }
+  return doctorFirstName; }
 
 void Doctor::setFirstName(std::string firstName) {
-  DoctorfirstName=firstName; }
+  doctorFirstName=std::move(firstName); }
 
 std::string Doctor::getLastName() {
-  return DoctorlastName; }
+  return doctorLastName; }
 
 void Doctor::setLastName(std::string lastName) {
-  DoctorlastName=lastName; }
+  doctorLastName=std::move(lastName); }
 
 
-int Doctor::getDoctorID() {
+long int Doctor::getID() {
   return doctorID; }
 
-void Doctor::setDoctorID(int DID) {
+void Doctor::setID(long int DID) {
   doctorID=DID; }
 
-std::string Doctor::getDoctorSpeciality() {
-  return doctorSpeciality; }
+std::string Doctor::getSpeciality() {
+  return speciality; }
 
-void Doctor::setDoctorSpeciality(std::string speciality) {
-  doctorSpeciality=speciality; }
+void Doctor::setSpeciality(std::string s) {
+  speciality=std::move(s); }
 
-int Doctor::getNumberOfYears() {
-  return numberOfYears; }
+int Doctor::getYearsOfExperience() {
+  return yearsOfExperience; }
 
-void Doctor::setNumberOfYears(int NOY) {
-  numberOfYears=NOY; }
+void Doctor::setYearsOfExperience(int NOY) {
+  yearsOfExperience=NOY; }
 
-double Doctor::getdoctorSalary(){
-  return doctorSalary; }
+double Doctor::getSalary(){
+  return salary; }
 
-void Doctor::setdoctorSalary(double salary){
-  doctorSalary=salary; }
+void Doctor::setSalary(double s){
+  baseSalary=s;
+  salary = Calculate_Salary();
+}
 
-double Doctor::getbonusSalary() {
-  return bonusSalary; }
+double Doctor::getBonus(){
+  return bonus; }
 
-void Doctor::setbonusSalary(double bsal) {
-  bonusSalary=bsal;
+void Doctor::setBonus(double bsal) {
+  bonus=bsal;
+  salary = Calculate_Salary();
 }
 
 //members functions
 double Doctor::Calculate_Salary() {
-doctorSalary=doctorSalary*bonusSalary;
-return doctorSalary;
+salary = baseSalary + baseSalary*bonus;
+return salary;
 }
+
+
+
 void Doctor::Print_Doctor_Info() {
-  std::cout<<"First Name: "<<DoctorfirstName<<std::endl;
-  std::cout<<"Last Name: "<<DoctorlastName<<std::endl;
+  std::cout<<"First Name: "<<doctorFirstName<<std::endl;
+  std::cout<<"Last Name: "<<doctorLastName<<std::endl;
   std::cout<<"Doctor ID: "<<doctorID<<std::endl;
-  std::cout<<"Doctor Speciality: "<<doctorSpeciality<<std::endl;
-  std::cout<<"Years of experience: "<<numberOfYears<<std::endl;
-  std::cout<<"Salary: "<<doctorSalary<<std::endl; // put getter
+  std::cout<<"Doctor Speciality: "<<speciality<<std::endl;
+  std::cout<<"Years of experience: "<<yearsOfExperience<<std::endl;
+  std::cout<<"Salary: "<<salary<<std::endl;
 }
-Doctor::Doctor(){}
-Doctor::Doctor(std::string name, std::string lastName, int ID, std::string S, int XP, double salary, double B) {
-    doctorFirstName = name;
-    doctorLastName = lastName;
-    doctorID = ID;
-    speciality = S;
-    yearsOfExperience = XP;
-    baseSalary = salary;
-    bonus = B;
-}
-//getters and setters
-std::string Doctor::getFirstName() {
-    return doctorFirstName;
-}
-std::string Doctor::getLastName() {
-    return doctorLastName;
-}
-int Doctor::getID() {
-    return doctorID;
-}
-std::string Doctor::getSpeciality() {
-    return speciality;
-}
-int Doctor::getYearsOfExperience() {
-    return yearsOfExperience;
-}
-double Doctor::getSalary() {
-    return baseSalary;
-}
-double Doctor::getBonus() {
-    return bonus;
-}
-
-void Doctor::setFirstName(std::string name) {
-    doctorFirstName = name;
-}
-void Doctor::setLastName(std::string lastName) {
-    doctorLastName = lastName;
-}
-void Doctor::setID(int ID) {
-    doctorID = ID;
-}
-void Doctor::setSpeciality(std::string S) {
-    speciality = S;
-}
-void Doctor::setYearsOfExperience(int years) {
-    yearsOfExperience = years;
-}
-void Doctor::setSalary(double salary) {
-    baseSalary = salary;
-}
-void Doctor::setBonus(double B) {
-    bonus = B;
-}
-
-double Doctor::Calculate_Salary() {
-    return baseSalary * (1+bonus);
-}
-void Doctor::Print_Doctor_Info(){}
