@@ -157,7 +157,11 @@ void Hospital::Show_Assigned_Patients(int id) {
         bool found = false;
         for(int i=0;i<patients.size();i++) {
             if(patients[i].getDID()==id) {
+                if(!found) {
+                    std::cout<<"Patients assigned: "<<std::endl;
+                }
                 patients[i].Print_Patient_info();
+                std::cout<<std::endl;
                 found = true;
             }
         }
