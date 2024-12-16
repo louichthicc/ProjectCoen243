@@ -90,48 +90,82 @@ void Hospital::Doctor_By_Speciality(std::string s) {
 }
 
 void Hospital::Show_Patient_by_ID(int id) {
-    for(int i=0;i<patients.size();i++) {
-        if(patients[i].getPID()==id) {
-            patients[i].Print_Patient_info();
-            return;
+    try {
+        bool found = false;
+        for(int i=0;i<patients.size();i++) {
+            if(patients[i].getPID()==id) {
+                patients[i].Print_Patient_info();
+                return;
+            }
+        }
+        if(!found) {
+            throw std::runtime_error("Patient not found");
         }
     }
-    std::cout<<"No patient has the provided ID"<<std::endl;
+    catch(const std::exception& e) {
+        std::cerr<<e.what()<<std::endl;
+    }
 }
 void Hospital::Show_Doctor_by_ID(int id) {
-    for(int i=0;i<doctors.size();i++) {
-        if(doctors[i].getID()==id) {
-            doctors[i].Print_Doctor_Info();
-            return;
+    try {
+        bool found = false;
+        for(int i=0;i<doctors.size();i++) {
+            if(doctors[i].getID()==id) {
+                doctors[i].Print_Doctor_Info();
+                return;
+            }
+        }
+        if(!found) {
+            throw std::runtime_error("Doctor not found");
         }
     }
-    std::cout<<"No doctor has the provided ID"<<std::endl;
+    catch(const std::exception& e) {
+        std::cerr<<e.what()<<std::endl;
+    }
 }
 void Hospital::Show_assigned_doctor(int id) {
     int doctorID = 0;
-    for(int i=0;i<patients.size();i++) {
-        if(patients[i].getPID()==id) {
-            doctorID=patients[i].getDID();
+    try {
+        bool foundP = false;
+        bool foundD = false;
+        for(int i=0;i<patients.size();i++) {
+            if(patients[i].getPID()==id) {
+                doctorID=patients[i].getDID();
+                foundP=true;
+            }
+        }
+        for(int i=0;i<doctors.size();i++) {
+            if(doctors[i].getID()==doctorID) {
+                std::cout<<"The assigned doctor is: "<<std::endl;
+                doctors[i].Print_Doctor_Info();
+                return;
+            }
+        }
+        if(!foundP) {
+            throw std::runtime_error("Patient not found");
+        }
+        else if(!foundD) {
+            throw std::runtime_error("Doctor not found");
         }
     }
-    for(int i=0;i<doctors.size();i++) {
-        if(doctors[i].getID()==doctorID) {
-            std::cout<<"The assigned doctor is: "<<std::endl;
-            doctors[i].Print_Doctor_Info();
-            return;
-        }
+    catch(const std::exception& e) {
+        std::cerr<<e.what()<<std::endl;
     }
-    std::cout<<"either the doctor ID provided or the patient ID provided aren't in our database."<<std::endl;
 }
 void Hospital::Show_Assigned_Patients(int id) {
-    int counter=0;
-    for(int i=0;i<patients.size();i++) {
-        if(patients[i].getDID()==id) {
-            counter++;
-            patients[i].Print_Patient_info();
+    try {
+        bool found = false;
+        for(int i=0;i<patients.size();i++) {
+            if(patients[i].getDID()==id) {
+                patients[i].Print_Patient_info();
+                found = true;
+            }
+        }
+        if(!found) {
+            throw std::runtime_error("Doctor's assignments not found");
         }
     }
-    if (counter==0) {
-        std::cout<<"no patients assigned";
+    catch(const std::exception& e) {
+        std::cerr<<e.what()<<std::endl;
     }
 }
