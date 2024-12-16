@@ -13,6 +13,5 @@ add_executable(ProjectCoen243
         Doctor.h
         Patients.h
         Patients.cpp
-        doctors.txt
-        file_Patients.txt
 )
+file(COPY doctors.txt Patients.txt DESTINATION ${CMAKE_BINARY_DIR})

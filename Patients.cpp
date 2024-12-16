@@ -109,7 +109,7 @@ void Patients::Print_Patient_info() {
             std::cout <<" month: ";
         }
         if (i == 5) {
-            std::cout << "day: ";
+            std::cout << " day: ";
         }
     }
     std::cout << std::endl;
@@ -122,19 +122,23 @@ void Patients::Print_Patient_info() {
             std::cout <<" month: ";
         }
         if (i == 5) {
-            std::cout << "day: ";
+            std::cout << " day: ";
         }
     }
     std::cout << std::endl;
-    std::cout << "Date of Discharge: year: ";
-    for(int i=0; i<dateOfDischarge.length(); i++) {
-        std::cout << dateOfDischarge[i];
-        if (i ==3) {
-            std::cout <<" month: ";
+    if(dateOfDischarge != "-1") {
+        std::cout << "Date of Discharge: year: ";
+        for(int i=0; i<dateOfDischarge.length(); i++) {
+            std::cout << dateOfDischarge[i];
+            if (i ==3) {
+                std::cout <<" month: ";
+            }
+            if (i == 5) {
+                std::cout << " day: ";
+            }
         }
-        if (i == 5) {
-            std::cout << "day: ";
-        }
+        std::cout << std::endl;
+    } else {
+        std::cout<<"Not discharged"<<std::endl;
     }
-    std::cout << std::endl;
 }

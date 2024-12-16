@@ -18,9 +18,9 @@ Hospital::Hospital() {
 }
 
 void Hospital::createPatients() {
-    std::ifstream file1("file_Patients.txt");
+    std::ifstream file1 ("Patients.txt",std::ios_base::binary);
     if(!file1) {
-        std::cerr<<"File not found"<<std::endl;
+        std::cerr<<"Patient file not found"<<std::endl;
         return;
     }
     std::string line;
@@ -46,9 +46,10 @@ void Hospital::createPatients() {
     file1.close();
 }
 void Hospital::createDoctors() {
-    std::ifstream file("doctors.txt");
+    std::ifstream file;
+    file.open("doctors.txt",std::ios_base::binary);
     if(!file) {
-        std::cerr<<"File not found"<<std::endl;
+        std::cerr<<"Doctor file not found"<<std::endl;
         return;
     }
     std::string line;
@@ -109,7 +110,7 @@ void Hospital::Show_Doctor_by_ID(int id) {
 void Hospital::Show_assigned_doctor(int id) {
     int doctorID = 0;
     for(int i=0;i<patients.size();i++) {
-        if(patients[i].getDID()==id) {
+        if(patients[i].getPID()==id) {
             doctorID=patients[i].getDID();
         }
     }
